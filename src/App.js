@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { Navbar } from "./components/Navbar";
+import { Aboutpage } from "./routes/Aboutpage";
+import { Dashboard } from "./routes/Dashboard";
+import { Homepage } from "./routes/Homepage";
+import { NotFound } from "./routes/NotFound";
+import { Userpage } from "./routes/Userpage";
+import { UsersPage } from "./routes/UsersPage";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+    
+      <Navbar/>
+      <Routes> WAW
+        <Route path='/' element={<Homepage/>} />
+        <Route path='/about' element={<Aboutpage/>}/>
+        <Route path='/users' element={<UsersPage/>}/>
+        <Route path='/users/:id' element={<Userpage/>}/>
+        <Route path='/user' element={<Navigate to='/users'/>}/>
+        <Route path='/dashboard/*' element={<Dashboard/>}/>
+          <Route path='/welcome' element={<p>hola</p>} />
+          <Route path='/goodbye' element={<p>bye</p>} />
+        <Route path='*' element={<NotFound/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
